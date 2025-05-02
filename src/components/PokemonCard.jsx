@@ -1,34 +1,33 @@
-import React, { useContext } from "react";
-import { FavoritesContext } from "../contexts/FavoritesContext";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 
-const PokemonCard = ({ pokemon, onSelect, isSelected }) => {
-  const { id, name, image, types } = pokemon || {};
-
-  if (!pokemon || !id || !image) return null;  // Ensure there's a valid pokemon object with an image
-
-  const { addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext);
-  const favorite = isFavorite(id);
-
-  
-  const handleClick = () => onSelect(pokemon);
+const PokemonCard = ({ pokemon, onSelect, onFavoriteClick, isSelected, showDetailsButton }) => {
+  const handleCardClick = (e) => {
+    // Prevent card selection when clicking inside the favorite or detail buttons
+    if (e.target.closest("button")) return;
+    if (onSelect) onSelect(pokemon);
+  };
 
   return (
-    <div 
-      className={`pokemon-card ${isSelected ? 'selected' : ''}`} 
-      onClick={handleClick}
+    <div
+      className={`pokemon-card ${isSelected ? "selected" : ""}`}
+      onClick={handleCardClick}
     >
-      <img src={image} alt={name} />
-      <h3>{name?.charAt(0).toUpperCase() + name?.slice(1)}</h3>
-      <div className="pokemon-id">ID: {id}</div> {/* Display Pokémon ID */}
-      <div className="pokemon-types">
-        {types?.map((typeName) => (
-          <span key={typeName}>{typeName}</span>
-        ))}
-      </div>
-      <button onClick={() => (favorite ? removeFavorite(id) : addFavorite(pokemon))}>
-        {favorite ? "★ Remove Favorite" : "☆ Add Favorite"}
+      <p className="pokemon-id">#{pokemon.id}</p>
+      <img src={pokemon.image} alt={pokemon.name} />
+      <h3>{pokemon.name}</h3>
+      <p>{pokemon.types.join(", ")}</p>
+
+      <button onClick={() => onFavoriteClick && onFavoriteClick(pokemon)}>
+        {pokemon.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
       </button>
+
+      {showDetailsButton && (
+        <Link to={`/pokemon/${pokemon.id}`}>
+          <button className="details-button">View Details</button>
+        </Link>
+      )}
     </div>
   );
 };
