@@ -1,0 +1,24 @@
+.compare-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .compare-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .compare-row strong {
+    font-size: 16px;
+    width: 150px;
+  }
+  
+  .compare-row span {
+    width: 100px;
+    text-align: center;
+  }
+  
