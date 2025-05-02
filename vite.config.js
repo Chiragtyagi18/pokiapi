@@ -5,3 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
 })
+// vite.config.js
+// export default {
+//   // other configurations...
+//   assetsInclude: ['**/*.js', '**/*.JS'],  // Add support for both lowercase and uppercase JS
+// };
