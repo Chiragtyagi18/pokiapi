@@ -1,0 +1,24 @@
+.type-filter {
+    margin-bottom: 1rem;
+    background: #f7f7f7;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .type-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .type-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: #fff;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
+  
