@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./home.css";
+import "./Home.css";
 
 import SearchBar from "../components/SearchBar";
 import TypeFilter from "../components/TypeFilter";
