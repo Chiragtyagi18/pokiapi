@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
@@ -9,6 +9,7 @@ import Pagination from "../components/Pagination";
 import PokemonCard from "../components/PokemonCard";
 import usePokemonList from "../hooks/usePokemonList";
 import CompareTool from "../components/CompareTool";
+import { FavoritesContext } from "../contexts/FavoritesContext"; // ✅ Import context
 
 const Home = () => {
   const {
@@ -25,6 +26,8 @@ const Home = () => {
     setCurrentPage,
   } = usePokemonList();
 
+  const { addFavorite, removeFavorite, isFavorite } = useContext(FavoritesContext); // ✅ Get context
+
   const [selectedPokemonA, setSelectedPokemonA] = useState(null);
   const [selectedPokemonB, setSelectedPokemonB] = useState(null);
 
@@ -35,17 +38,24 @@ const Home = () => {
 
   const handleSelectPokemon = (pokemon) => {
     if (selectedPokemonA?.id === pokemon.id) {
-      setSelectedPokemonA(null); // Toggle off
+      setSelectedPokemonA(null);
     } else if (selectedPokemonB?.id === pokemon.id) {
-      setSelectedPokemonB(null); // Toggle off
+      setSelectedPokemonB(null);
     } else if (!selectedPokemonA) {
-      setSelectedPokemonA(pokemon); // Set first
+      setSelectedPokemonA(pokemon);
     } else if (!selectedPokemonB) {
-      setSelectedPokemonB(pokemon); // Set second
+      setSelectedPokemonB(pokemon);
     } else {
-      // Replace both if both selected
       setSelectedPokemonA(pokemon);
       setSelectedPokemonB(null);
+    }
+  };
+
+  const handleFavoriteClick = (pokemon) => {
+    if (isFavorite(pokemon.id)) {
+      removeFavorite(pokemon.id);
+    } else {
+      addFavorite(pokemon);
     }
   };
 
@@ -77,9 +87,12 @@ const Home = () => {
               key={pokemon.id}
               pokemon={pokemon}
               onSelect={handleSelectPokemon}
+              onFavoriteClick={handleFavoriteClick} // ✅ Handle favorites
+              isFavorite={isFavorite}               // ✅ Mark if favorite
               isSelected={
                 pokemon.id === selectedPokemonA?.id || pokemon.id === selectedPokemonB?.id
               }
+              showDetailsButton={true}              // ✅ Show "View Details"
             />
           ))}
         </div>
