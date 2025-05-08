@@ -66,8 +66,8 @@ const Home = () => {
       <div className="home-controls">
         <SearchBar value={searchTerm} onSearch={handleSearch} />
 
-        <Link to="/favorites" className="favorite-button">
-          <button>View Favorite Pokémon</button>
+        <Link to="/favorites">
+          <button style={{ backgroundColor: 'rgb(152, 230, 34)'}} className="favorite-button">View Favorite Pokémon</button>
         </Link>
 
         <TypeFilter selectedTypes={selectedTypes} onChange={handleTypeFilter} />
