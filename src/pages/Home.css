@@ -31,29 +31,9 @@
   .go-to-favorites {
     margin-top: 20px;
   }
-  
-  .favorites-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color:rgb(22, 243, 18);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .favorites-btn:hover {
-    background-color:rgb(34, 197, 230);
-  }
-  
+
   .favorite-button {
-    margin-top: 10px;
-  }
-  
-  .favorite-button button {
     padding: 8px 12px;
-    background-color:rgb(228, 244, 0);
     color: black;
     border: none;
     border-radius: 6px;
