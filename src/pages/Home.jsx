@@ -67,7 +67,7 @@ const Home = () => {
         <SearchBar value={searchTerm} onSearch={handleSearch} />
 
         <Link to="/favorites">
-          <button style={{ backgroundColor: 'rgb(152, 230, 34)'}} className="favorite-button">View Favorite Pokémon</button>
+          <button style={{ backgroundColor: 'rgba(34, 112, 230, 1)'}} className="favorite-button">Favorite Pokémon</button>
         </Link>
 
         <TypeFilter selectedTypes={selectedTypes} onChange={handleTypeFilter} />
